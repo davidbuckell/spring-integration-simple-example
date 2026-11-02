@@ -2,6 +2,8 @@ package com.buckell.springintegration.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.integration.annotation.Gateway;
+import org.springframework.integration.annotation.MessagingGateway;
 import org.springframework.integration.channel.DirectChannel;
 import org.springframework.messaging.MessageChannel;
 
@@ -34,5 +36,12 @@ public class IntegrationConfig {
     @Bean
     public MessageChannel multiplyByTwoChannel() {
         return new DirectChannel();
+    }
+
+    @MessagingGateway
+    public interface NumberGateway {
+
+        @Gateway(requestChannel = "multiplyByTwoChannel")
+        Integer multiply(Integer number);
     }
 }

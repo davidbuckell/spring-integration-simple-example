@@ -66,9 +66,8 @@ public class IntegrationFlows {
                 .<Integer>handle((payload, headers) -> {
                     var result = payload * 2;
                     System.out.println("multiplied number is even: " + result);
-                    return null;
+                    return result;
                 })
                 .get();
-        // why did this output appear in console but not log from previous getRandomNumber integration flow?
     }
 }
